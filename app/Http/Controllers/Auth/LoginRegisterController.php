@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Mail\SendEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class LoginRegisterController extends Controller
 {
@@ -28,11 +30,19 @@ class LoginRegisterController extends Controller
             'email' => 'required|email|max:250|unique:users',
             'password' => 'required|min:8|confirmed'
         ]);
+        
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
+
+        $content =[
+            'subject'  => $request->name,
+            'body' => $request->email
+        ];
+        Mail::to($request->email)->send(new SendEmail($content));
+
         $credentials = $request->only('email','password');
         Auth::attempt($credentials);
         $request->session()->regenerate();
