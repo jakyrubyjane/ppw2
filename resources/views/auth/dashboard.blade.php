@@ -21,6 +21,10 @@
                     <header class="text-center my-5">
                         <h1>Dzaki Achmad Abimanyu</h1>
                         <p class="lead">Software Engineering</p>
+                        <form action="{{route('users')}}">
+                            @csrf
+                        <button style="border-radius: 15px; background-color:white;">Lihat User</button>
+                        </form>   
                     </header>
 
                     <section class="my-5">
