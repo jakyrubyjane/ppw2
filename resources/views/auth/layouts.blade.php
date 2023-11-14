@@ -25,6 +25,9 @@
         }
     </style>
     <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('lightbox2/dist/css/lightbox.min.css')}}"> 
+    <script src="{{ asset('lightbox2/dist/js/lightbox-plus-jquery.min.js')
+}}"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
@@ -40,6 +43,9 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{route('register')}}" class="nav-link {{(request()->is('register')) ? 'active':''}}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link {{ (request()->is('gallery')) ? 'active' : '' }}" href="{{route('gallery.index') }}">Gallery</a>
                     </li>
                     @else
                     <li class="nav-item dropdown">

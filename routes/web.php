@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\UserController;
+use illuminate\Support\Facades\Storage;
+use App\Http\Controllers\GalleryController;
+
+
 
 
 
@@ -41,3 +45,7 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.e
 Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::get('/users/{user}/resize', [UserController::class, 'resizeForm'])->name('resizeForm');
 Route::post('/users/{user}/resize', [UserController::class, 'resizeImage'])->name('resizeImage');
+
+// Storage::disk('local')->put('file.txt', 'Contents');
+Route::resource('gallery', GalleryController::class);
+
