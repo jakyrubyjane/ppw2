@@ -46,20 +46,20 @@ class LoginRegisterController extends Controller
             $extension = $request->file('photo')->getClientOriginalExtension();
             $filenameSimpan = $filename . '_' . time() . '.' . $extension;
             $path = $request->file('photo')->storeAs('photos/original', $filenameSimpan);
+            
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'photo' =>$filenameSimpan
+            ]);
+            
+            $credentials = $request->only('email', 'password');
+            Auth::attempt($credentials);
+            $request->session()->regenerate();
+            return redirect()->route('dashboard')
+            ->withSuccess('You have successfully registered and logged in');
         }
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'photo' =>$filenameSimpan
-        ]);
-
-        $credentials = $request->only('email', 'password');
-        Auth::attempt($credentials);
-        $request->session()->regenerate();
-        return redirect()->route('dashboard')
-        ->withSuccess('You have successfully registered and logged in');
     }
 
     public function login(){
