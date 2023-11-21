@@ -47,6 +47,9 @@
                     <li class="nav-item">
                     <a class="nav-link {{ (request()->is('gallery')) ? 'active' : '' }}" href="{{route('gallery.index') }}">Gallery</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ (request()->is('gallery')) ? 'active' : '' }}" href="{{route('apiListgallery') }}">GalleryAPI</a>
+                    </li>
                     @else
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,6 +67,7 @@
                         </ul>
                     </li>
                     @endguest
+                    
                 </ul>
             </div>
         </div>
