@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <form action="{{ route('apiCreateGallery') }}" >
-        <button type="submit" class="btn btn-warning mb-2 d-flex">Tambah</button>
+        <button type="submit" class="btn btn-warning mb-2 ">Tambah</button>
         </form>
             </div>
         </div>
